@@ -20,7 +20,7 @@
 	var page = 1;
 	var timer;
 
-	window.posts = new wp.api.collections.Posts();
+	var posts = new wp.api.collections.Posts();
 	var options = {
 		data: {
 			page: 2
@@ -40,6 +40,10 @@
 	} else if ( 'search' === settings.loopType ) {
 		options.data.filter = {
 			s: settings.searchQuery
+		};
+	} else if ( 'author' === settings.loopType ) {
+		options.data.filter = {
+			author: settings.queriedObject.data.ID
 		};
 	}
 
@@ -70,7 +74,7 @@
 
 				var $setContainer = $( '<div data-page-num="' + posts.state.currentPage + '" class="post-set"></div>' );
 				posts.each( function( model ) {
-					$setContainer.append( postTemplate( { post: model.attributes } ) );
+					$setContainer.append( postTemplate( { post: model.attributes, settings: settings } ) );
 				});
 
 				$postContainer.append( $setContainer );

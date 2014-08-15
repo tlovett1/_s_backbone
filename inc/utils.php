@@ -12,14 +12,16 @@ function _s_backbone_get_request_path() {
 		global $wp;
 
 		// If called too early, bail
-		if ( ! isset( $wp->request ) )
+		if ( ! isset( $wp->request ) ) {
 			return false;
+		}
 
 		// Determine path for paginated version of current request
-		if ( false != preg_match( '#' . $wp_rewrite->pagination_base . '/\d+/?$#i', $wp->request ) )
+		if ( false != preg_match( '#' . $wp_rewrite->pagination_base . '/\d+/?$#i', $wp->request ) ) {
 			$path = preg_replace( '#' . $wp_rewrite->pagination_base . '/\d+$#i', $wp_rewrite->pagination_base . '/%d', $wp->request );
-		else
+		} else {
 			$path = $wp->request . '/' . $wp_rewrite->pagination_base . '/%d';
+		}
 
 		// Slashes everywhere we need them
 		if ( 0 !== strpos( $path, '/' ) )
@@ -47,7 +49,9 @@ function _s_backbone_get_request_path() {
 function _s_backbone_get_request_parameters() {
 	$uri = $_SERVER[ 'REQUEST_URI' ];
 	$uri = preg_replace( '/^[^?]*(\?.*$)/', '$1', $uri, 1, $count );
-	if ( $count != 1 )
+	if ( $count != 1 ) {
 		return '';
+	}
+
 	return $uri;
 }

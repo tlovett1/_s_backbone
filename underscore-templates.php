@@ -17,7 +17,9 @@
 					<?php esc_html_e( 'by', '_s_backbone' ); ?>
 
 					<span class="author vcard">
-						<a class="url fn n" href=""><%= post.author.get( 'nickname' ) %></a>
+						<a class="url fn n" href="<%= settings.pathInfo['author_permastruct'].replace( '%author%', post.author.get( 'username' ) ) %>">
+							<%= post.author.get( 'nickname' ) %>
+						</a>
 					</span>
 				</span>
 			</div><!-- .entry-meta -->
