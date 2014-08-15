@@ -20,7 +20,28 @@
 	var page = 1;
 	var timer;
 
-	var posts = new wp.api.collections.Posts();
+	window.posts = new wp.api.collections.Posts();
+	var options = {
+		data: {
+			page: 2
+		}
+	};
+
+	if ( 'archive' === settings.loopType ) {
+		options.data.filter = {
+			tax_query: [
+				{
+					taxonomy: settings.queriedObject.taxonomy,
+					field: 'id',
+					terms: settings.queriedObject.term_id
+				}
+			]
+		};
+	} else if ( 'search' === settings.loopType ) {
+		options.data.filter = {
+			s: settings.searchQuery
+		};
+	}
 
 	/**
 	 * Update current url using HTML5 history API
@@ -160,7 +181,7 @@
 	/**
 	 * Initial posts fetch
 	 */
-	posts.fetch().done( function() {
+	posts.fetch( options ).done( function() {
 
 		if ( posts.hasMore() ) {
 
