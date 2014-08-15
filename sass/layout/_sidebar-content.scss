@@ -1,0 +1,20 @@
+.content-area {
+	float: right;
+	margin: 0 0 0 -$size__s_backboneite-sidebar;
+	width: $size__s_backboneite-main;
+}
+
+.site-main {
+	margin: 0 0 0 $size__s_backboneite-sidebar;
+}
+
+.site-content .widget-area {
+	float: left;
+	overflow: hidden;
+	width: $size__s_backboneite-sidebar;
+}
+
+.site-footer {
+	clear: both;
+	width: $size__s_backboneite-main;
+}

@@ -1,0 +1,26 @@
+<?php
+/**
+ * _s_backbone Theme Customizer
+ *
+ * @package _s_backbone
+ */
+
+/**
+ * Add postMessage support for site title and description for the Theme Customizer.
+ *
+ * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+ */
+function _s_backbone_customize_register( $wp_customize ) {
+	$wp_customize->get_s_backboneetting( 'blogname' )->transport         = 'postMessage';
+	$wp_customize->get_s_backboneetting( 'blogdescription' )->transport  = 'postMessage';
+	$wp_customize->get_s_backboneetting( 'header_textcolor' )->transport = 'postMessage';
+}
+add_action( 'customize_register', '_s_backbone_customize_register' );
+
+/**
+ * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
+ */
+function _s_backbone_customize_preview_js() {
+	wp_enqueue_s_backbonecript( '_s_backbone_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20130508', true );
+}
+add_action( 'customize_preview_init', '_s_backbone_customize_preview_js' );
