@@ -10,7 +10,22 @@
 
 		<?php if ( 'post' == get_post_type() ) : ?>
 			<div class="entry-meta">
-				<?php _s_backbone_posted_on(); ?>
+				<span class="posted-on">
+					<?php esc_html_e( 'Posted on', '_s_backbone' ); ?>
+
+					<time class="entry-date published">
+						<?php echo get_the_date( 'n/j/Y' ); ?>
+					</time>
+				</span>
+				<span class="byline">
+					<?php esc_html_e( 'by', '_s_backbone' ); ?>
+
+					<span class="author vcard">
+						<a class="url fn n" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
+							<?php echo esc_html( get_the_author() ); ?>
+						</a>
+					</span>
+				</span>
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
@@ -27,8 +42,8 @@
 			if ( $categories_list && _s_backbone_categorized_blog() ) :
 				?>
 				<span class="cat-links">
-				<?php printf( esc_html__( 'Posted in %1$s', '_s_backbone' ), $categories_list ); ?>
-			</span>
+					<?php printf( esc_html__( 'Posted in %1$s', '_s_backbone' ), $categories_list ); ?>
+				</span>
 			<?php endif; // End if categories ?>
 
 			<?php
@@ -37,8 +52,8 @@
 			if ( $tags_list ) :
 				?>
 				<span class="tags-links">
-				<?php printf( esc_html__( 'Tagged %1$s', '_s_backbone' ), $tags_list ); ?>
-			</span>
+					<?php printf( esc_html__( 'Tagged %1$s', '_s_backbone' ), $tags_list ); ?>
+				</span>
 			<?php endif; // End if $tags_list ?>
 		<?php endif; // End if 'post' == get_post_type() ?>
 	</footer><!-- .entry-footer -->

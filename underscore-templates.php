@@ -5,7 +5,21 @@
 
 			<% if ( 'post' === post.type ) { %>
 			<div class="entry-meta">
-				<%= post.date %>
+				<% postDate = new Date( post.date ); %>
+				<span class="posted-on">
+					<?php esc_html_e( 'Posted on', '_s_backbone' ); ?>
+
+					<time class="entry-date published">
+						<% print( ( postDate.getMonth() + 1 ) + '/' + postDate.getDate() + '/' + postDate.getFullYear() ); %>
+					</time>
+				</span>
+				<span class="byline">
+					<?php esc_html_e( 'by', '_s_backbone' ); ?>
+
+					<span class="author vcard">
+						<a class="url fn n" href=""><%= post.author.get( 'nickname' ) %></a>
+					</span>
+				</span>
 			</div><!-- .entry-meta -->
 			<% } %>
 		</header><!-- .entry-header -->
