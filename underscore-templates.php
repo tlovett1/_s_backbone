@@ -18,7 +18,7 @@
 			<% if ( 'post' === post.type ) { %>
 				<% if ( post.terms.category ) { %>
 					<span class="cat-links">
-						<?php _e( 'Posted in', '_s_backbone' ); ?>
+						<?php esc_html_e( 'Posted in', '_s_backbone' ); ?>
 						<% _.each( post.terms.category, function( category ) { %>
 							<a href="<%= category.link %>"><%= category.name %></a>
 						<% } ); %>
@@ -40,7 +40,7 @@
 <script type="text/html" id="more-button-template">
 	<div class="more-posts">
 
-		<a class="more-button button" href="#"><?php _e( 'More', '_s_backbone' ); ?></a>
+		<a class="more-button button" href="#"><?php esc_html_e( 'More', '_s_backbone' ); ?></a>
 
 	</div>
 </script>

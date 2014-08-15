@@ -12,9 +12,7 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'http://wordpress.org/', '_s_backbone' ) ); ?>"><?php printf( __( 'Proudly powered by %s', '_s_backbone' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( __( 'Theme: %1$s by %2$s.', '_s_backbone' ), '_s_backbone', '<a href="http://automattic.com/" rel="designer">Automattic</a>' ); ?>
+			<a href="<?php echo esc_url( 'http://wordpress.org/' ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', '_s_backbone' ), 'WordPress' ); ?></a>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

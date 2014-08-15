@@ -17,7 +17,7 @@
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', '_s_backbone' ),
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', '_s_backbone' ),
 				'after'  => '</div>',
 			) );
 		?>
@@ -26,25 +26,25 @@
 	<footer class="entry-footer">
 		<?php
 			/* translators: used between list items, there is a space after the comma */
-			$category_list = get_the_category_list( __( ', ', '_s_backbone' ) );
+			$category_list = get_the_category_list( esc_html__( ', ', '_s_backbone' ) );
 
 			/* translators: used between list items, there is a space after the comma */
-			$tag_list = get_the_tag_list( '', __( ', ', '_s_backbone' ) );
+			$tag_list = get_the_tag_list( '', esc_html__( ', ', '_s_backbone' ) );
 
 			if ( ! _s_backbone_categorized_blog() ) {
 				// This blog only has 1 category so we just need to worry about tags in the meta text
 				if ( '' != $tag_list ) {
-					$meta_text = __( 'This entry was tagged %2$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', '_s_backbone' );
+					$meta_text = esc_html__( 'This entry was tagged %2$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', '_s_backbone' );
 				} else {
-					$meta_text = __( 'Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', '_s_backbone' );
+					$meta_text = esc_html__( 'Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', '_s_backbone' );
 				}
 
 			} else {
 				// But this blog has loads of categories so we should probably display them here
 				if ( '' != $tag_list ) {
-					$meta_text = __( 'This entry was posted in %1$s and tagged %2$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', '_s_backbone' );
+					$meta_text = esc_html__( 'This entry was posted in %1$s and tagged %2$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', '_s_backbone' );
 				} else {
-					$meta_text = __( 'This entry was posted in %1$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', '_s_backbone' );
+					$meta_text = esc_html__( 'This entry was posted in %1$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', '_s_backbone' );
 				}
 
 			} // end check for categories on this blog
@@ -57,6 +57,6 @@
 			);
 		?>
 
-		<?php edit_post_link( __( 'Edit', '_s_backbone' ), '<span class="edit-link">', '</span>' ); ?>
+		<?php edit_post_link( esc_html__( 'Edit', '_s_backbone' ), '<span class="edit-link">', '</span>' ); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

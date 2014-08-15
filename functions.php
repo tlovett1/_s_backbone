@@ -17,15 +17,15 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 640; /* pixels */
 }
 
-if ( ! function_exists( '_s_backbone_s_backboneetup' ) ) :
+if ( ! function_exists( '_s_backbone_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
- * Note that this function is hooked into the after_s_backboneetup_theme hook, which
+ * Note that this function is hooked into the after_setup_theme hook, which
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function _s_backbone_s_backboneetup() {
+function _s_backbone_seetup() {
 
 	/*
 	 * Make theme available for translation.
@@ -36,25 +36,25 @@ function _s_backbone_s_backboneetup() {
 	load_theme_textdomain( '_s_backbone', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
-	add_theme_s_backboneupport( 'automatic-feed-links' );
+	add_theme_support( 'automatic-feed-links' );
 
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
 	 *
-	 * @link http://codex.wordpress.org/Function_Reference/add_theme_s_backboneupport#Post_Thumbnails
+	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
-	//add_theme_s_backboneupport( 'post-thumbnails' );
+	//add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', '_s_backbone' ),
+		'primary' => esc_html__( 'Primary Menu', '_s_backbone' ),
 	) );
 	
 	/*
 	 * Switch default core markup for search form, comment form, and comments
 	 * to output valid HTML5.
 	 */
-	add_theme_s_backboneupport( 'html5', array(
+	add_theme_support( 'html5', array(
 		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
 	) );
 
@@ -62,27 +62,27 @@ function _s_backbone_s_backboneetup() {
 	 * Enable support for Post Formats.
 	 * See http://codex.wordpress.org/Post_Formats
 	 */
-	add_theme_s_backboneupport( 'post-formats', array(
+	add_theme_support( 'post-formats', array(
 		'aside', 'image', 'video', 'quote', 'link'
 	) );
 
 	// Setup the WordPress core custom background feature.
-	add_theme_s_backboneupport( 'custom-background', apply_filters( '_s_backbone_custom_background_args', array(
+	add_theme_support( 'custom-background', apply_filters( '_s_backbone_custom_background_args', array(
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
 }
-endif; // _s_backbone_s_backboneetup
-add_action( 'after_s_backboneetup_theme', '_s_backbone_s_backboneetup' );
+endif; // _s_backbone_setup
+add_action( 'after_setup_theme', '_s_backbone_setup' );
 
 /**
  * Register widget area.
  *
- * @link http://codex.wordpress.org/Function_Reference/register_s_backboneidebar
+ * @link http://codex.wordpress.org/Function_Reference/register_sidebar
  */
 function _s_backbone_widgets_init() {
-	register_s_backboneidebar( array(
-		'name'          => __( 'Sidebar', '_s_backbone' ),
+	register_sidebar( array(
+		'name'          => esc_html__( 'Sidebar', '_s_backbone' ),
 		'id'            => 'sidebar-1',
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
