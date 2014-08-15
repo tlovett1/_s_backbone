@@ -25,7 +25,7 @@ if ( ! function_exists( '_s_backbone_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function _s_backbone_seetup() {
+function _s_backbone_setup() {
 
 	/*
 	 * Make theme available for translation.
@@ -119,7 +119,7 @@ function _s_backbone_scripts() {
 		));
 	}
 }
-add_action( 'wp_enqueue_scripts', '_s_backbone_sripts' );
+add_action( 'wp_enqueue_scripts', '_s_backbone_scripts' );
 
 /**
  * Implement the Custom Header feature.
