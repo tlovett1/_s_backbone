@@ -28,15 +28,9 @@
 	};
 
 	if ( 'archive' === settings.loopType ) {
-		options.data.filter = {
-			tax_query: [
-				{
-					taxonomy: settings.queriedObject.taxonomy,
-					field: 'id',
-					terms: settings.queriedObject.term_id
-				}
-			]
-		};
+		options.data.filter = {};
+		options.data.filter[settings.taxonomy['query_var']] = settings.queriedObject.slug;
+
 	} else if ( 'search' === settings.loopType ) {
 		options.data.filter = {
 			s: settings.searchQuery
@@ -60,31 +54,6 @@
 			history.pushState( null, null, pageSlug );
 		}
 	}
-
-	/**
-	 * Grab more posts if more button is clicked and append them to loop
-	 */
-	function setupMoreListener() {
-		$postContainer.on( 'click', '.more-button', function( event ) {
-			event.preventDefault();
-
-			$moreButton.hide();
-
-			posts.more().done( function() {
-
-				var $setContainer = $( '<div data-page-num="' + posts.state.currentPage + '" class="post-set"></div>' );
-				posts.each( function( model ) {
-					$setContainer.append( postTemplate( { post: model.attributes, settings: settings } ) );
-				});
-
-				$postContainer.append( $setContainer );
-
-				if ( posts.hasMore() ) {
-					$moreButton.appendTo( $postContainer).show();
-				}
-			} );
-		});
-	};
 
 	/**
 	 * Determine URL for pushing new history
@@ -183,12 +152,35 @@
 	}
 
 	/**
+	 * Grab more posts if more button is clicked and append them to loop
+	 */
+	function setupMoreListener() {
+		$postContainer.on( 'click', '.more-button', function( event ) {
+			event.preventDefault();
+
+			$moreButton.hide();
+
+			var $setContainer = $( '<div data-page-num="' + posts.state.currentPage + '" class="post-set"></div>' );
+			posts.each( function( model ) {
+				$setContainer.append( postTemplate( { post: model.attributes, settings: settings } ) );
+			});
+
+			$postContainer.append( $setContainer );
+
+			if ( posts.hasMore() ) {
+				posts.more().done( function() {
+					$moreButton.appendTo( $postContainer).show();
+				} );
+			}
+		});
+	};
+
+	/**
 	 * Initial posts fetch
 	 */
 	posts.fetch( options ).done( function() {
 
-		if ( posts.hasMore() ) {
-
+		if ( posts.length > 0 ) {
 			$postContainer.append( $moreButton );
 
 			setupMoreListener();

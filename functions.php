@@ -108,23 +108,13 @@ function _s_backbone_scripts() {
 	} elseif ( is_home() || is_front_page() || is_archive() || is_search() ) {
 		global $wp_rewrite;
 
-		//var_dump( get_queried_object());
-
-		$loop_type = 'home';
-		if ( is_archive() ) {
-			$loop_type = 'archive';
-		} elseif ( is_search() ) {
-			$loop_type = 'search';
-		} elseif ( is_author() ) {
-			$loop_type = 'author';
-		}
-
 		wp_enqueue_script( '_s_backbone-loop', get_template_directory_uri() . '/js/loop.js', array( 'jquery', 'backbone', 'underscore'  ), '1.0', true );
 
-		wp_localize_script( '_s_backbone-loop', 'settings', array(
-			'loopType' => $loop_type,
-			'queriedObject' => get_queried_object(),
-			'searchQuery' => get_search_query(),
+		$queried_object = get_queried_object();
+
+		$local = array(
+			'loopType' => 'home',
+			'queriedObject' => $queried_object,
 			'pathInfo' => array(
 				'author_permastruct' => $wp_rewrite->get_author_permastruct(),
 				'host' => preg_replace( '#^http(s)?://#i', '', untrailingslashit( get_option( 'home' ) ) ),
@@ -132,7 +122,19 @@ function _s_backbone_scripts() {
 				'use_trailing_slashes' => $wp_rewrite->use_trailing_s_backbonelashes,
 				'parameters' => _s_backbone_get_request_parameters(),
 			),
-		));
+		);
+
+		if ( is_category() || is_tag() || is_tax() ) {
+			$local['loopType'] = 'archive';
+			$local['taxonomy'] = get_taxonomy( $queried_object->taxonomy );
+		} elseif ( is_search() ) {
+			$local['loopType'] = 'search';
+			$local['searchQuery'] = get_search_query();
+		} elseif ( is_author() ) {
+			$local['loopType'] = 'author';
+		}
+
+		wp_localize_script( '_s_backbone-loop', 'settings', $local );
 	}
 }
 add_action( 'wp_enqueue_scripts', '_s_backbone_scripts' );
