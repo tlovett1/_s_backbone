@@ -38,7 +38,7 @@ get_header(); ?>
 							printf( esc_html__( 'Year: %s', '_s_backbone' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', '_s_backbone' ) ) . '</span>' );
 
 						else :
-							_e( 'Archives', '_s_backbone' );
+							esc_html_e( 'Archives', '_s_backbone' );
 
 						endif;
 					?>

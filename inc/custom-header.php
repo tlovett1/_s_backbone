@@ -40,7 +40,7 @@ if ( ! function_exists( '_s_backbone_header_style' ) ) :
 /**
  * Styles the header image and text displayed on the blog
  *
- * @see _s_backbone_custom_header_s_backboneetup().
+ * @see _s_backbone_custom_header_setup().
  */
 function _s_backbone_header_style() {
 	$header_text_color = get_header_textcolor();
@@ -81,7 +81,7 @@ if ( ! function_exists( '_s_backbone_admin_header_style' ) ) :
 /**
  * Styles the header image displayed on the Appearance > Header admin panel.
  *
- * @see _s_backbone_custom_header_s_backboneetup().
+ * @see _s_backbone_custom_header_setup().
  */
 function _s_backbone_admin_header_style() {
 ?>
@@ -109,7 +109,7 @@ if ( ! function_exists( '_s_backbone_admin_header_image' ) ) :
 /**
  * Custom header image markup displayed on the Appearance > Header admin panel.
  *
- * @see _s_backbone_custom_header_s_backboneetup().
+ * @see _s_backbone_custom_header_setup().
  */
 function _s_backbone_admin_header_image() {
 	$style = sprintf( ' style="color:#%s;"', get_header_textcolor() );
