@@ -56,7 +56,8 @@
 	}
 
 	/**
-	 * Determine URL for pushing new history
+	 * Determine URL for pushing new history. Props to Automattic's Jetpack plugin
+	 * for much of this code.
 	 */
 	function determineURL() {
 		var windowTop = $( window ).scrollTop();
