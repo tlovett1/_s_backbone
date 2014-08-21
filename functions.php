@@ -119,7 +119,7 @@ function _s_backbone_scripts() {
 				'author_permastruct' => $wp_rewrite->get_author_permastruct(),
 				'host' => preg_replace( '#^http(s)?://#i', '', untrailingslashit( get_option( 'home' ) ) ),
 				'path' => _s_backbone_get_request_path(),
-				'use_trailing_slashes' => $wp_rewrite->use_trailing_s_backbonelashes,
+				'use_trailing_slashes' => $wp_rewrite->use_trailing_slashes,
 				'parameters' => _s_backbone_get_request_parameters(),
 			),
 		);
