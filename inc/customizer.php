@@ -11,9 +11,9 @@
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
 function _s_backbone_customize_register( $wp_customize ) {
-	$wp_customize->get_s_backboneetting( 'blogname' )->transport         = 'postMessage';
-	$wp_customize->get_s_backboneetting( 'blogdescription' )->transport  = 'postMessage';
-	$wp_customize->get_s_backboneetting( 'header_textcolor' )->transport = 'postMessage';
+	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
+	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
+	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 }
 add_action( 'customize_register', '_s_backbone_customize_register' );
 
