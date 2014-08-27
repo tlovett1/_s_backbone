@@ -23,7 +23,7 @@
 	var posts = new wp.api.collections.Posts();
 	var options = {
 		data: {
-			page: 2
+			page: settings.page || 2
 		}
 	};
 
