@@ -136,7 +136,7 @@ function _s_backbone_scripts() {
 		
 		//set the page we're on so that Backbone can load the proper state
 		if ( is_paged() ) {
-			$local['page'] = get_query_var( 'paged' );
+			$local['page'] = absint( get_query_var( 'paged' ) ) + 1;
 		}
 
 		wp_localize_script( '_s_backbone-loop', 'settings', $local );
