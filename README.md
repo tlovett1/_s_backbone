@@ -1,4 +1,4 @@
-_s_backbone WordPress Starter Theme
+_s_backbone WordPress Starter Theme [![Dockunit Status](https://dockunit.io/svg/tlovett1/_s_backbone?master)](https://dockunit.io/projects/tlovett1/_s_backbone#master)
 ===
 
 Hi. I'm a starter theme called `_s_backbone` for WordPress based off [_s](https://github.com/Automattic/_s) and the [JSON REST API](https://github.com/WP-API/wp-api) [Backbone client](https://github.com/WP-API/client-js).
